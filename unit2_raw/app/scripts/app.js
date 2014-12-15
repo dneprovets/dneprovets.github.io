@@ -20,3 +20,17 @@
             .otherwise({redirectTo: '404.html'});
     }]);
 }());
+
+
+
+                }).when('/product/:id', { 
+                    templateUrl: 'views/product.html', 
+                    controller: 'ProductCtrl', 
+                    resolve: { 
+                        product: ['$route', '$http', ($route, $http) = >
+                            $http.get('/product/' + $route.current.params.id)
+                            .success((data) = > data); 
+                    ] 
+                } 
+                }).otherwise({
+                redirectTo: '/'
